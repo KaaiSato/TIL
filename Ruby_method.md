@@ -7,4 +7,4 @@
        => ["ba", "ba", "ba", "ba"]
        ```
        
-https://docs.ruby-lang.org/ja/latest/method/String/i/scan.html
+[scanメソッド](https://docs.ruby-lang.org/ja/latest/method/String/i/scan.html)
