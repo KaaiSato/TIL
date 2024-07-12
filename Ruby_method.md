@@ -1,3 +1,18 @@
+# evenメソッド 
+
+対象の要素の値が偶数であれば真を返し、そうでない場合は偽を返す
+
+      ```ruby
+      10.even? #=> true
+
+       5.even?  #=> false
+       ```
+       
+[evenメソッド](https://docs.ruby-lang.org/ja/latest/method/Integer/i/even=3f.html)
+
+
+
+
 # indexメソッド 
 
 文字列や配列の中に指定した文字列が含まれていた場合、その文字列の開始位置を整数の値で返す
