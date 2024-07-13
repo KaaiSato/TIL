@@ -11,6 +11,16 @@
 [evenメソッド](https://docs.ruby-lang.org/ja/latest/method/Integer/i/even=3f.html)
 
 
+# include?メソッド 
+
+指定した値が、配列中に含まれているかを判定する。指定した値が含まれている場合はtrueを、含まれていない場合はfalseを返り値として返す。
+
+      ```ruby
+      array = ["foo", "bar"]　
+      　puts array.include?("bar")　　#=> true
+　　　　puts array.include?("hoge")　#=> false
+       ```
+
 
 
 # indexメソッド 
