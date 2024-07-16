@@ -15,6 +15,32 @@ end
 ```
 Personクラスはデータベースとは独立しており、一時的にモデルとして振舞う。
 
+# attr_accessor
+Rubyの組み込みメソッド。特定のクラスインスタンス変数に対するgetterとsetterを一度に定義。毎回手作業でgetterとsetterを書く手間を省くことができる
+・getter：インスタンス変数の値を読み出すメソッド。
+・setter：インスタンス変数に値を設定するメソッド。
+```ruby
+class Car
+  attr_accessor :color
+end
+
+car = Car.new
+car.color = "Red"  # setterを使用して値を設定
+puts car.color     # getterを使用して値を取得 => "Red"
+```
+上記のattr_accessor :colorは以下のコードと等価
+```ruby
+def color
+  @color
+end
+
+def color=(value)
+  @color = value
+end
+```
+
+
+
 # index: true
 マイグレーションファイルでカラム名の後に記述する。指定したカラムに対してデータベースのインデックスを作成するという意味です。データベースのインデックスは、データ検索を高速化する役割を果たす。
 一般的に、頻繁に検索や絞り込みに使われるカラムにはインデックスを設けると良い。
