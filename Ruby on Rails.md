@@ -15,6 +15,14 @@ end
 ```
 Personクラスはデータベースとは独立しており、一時的にモデルとして振舞う。
 
+# Application Record
+Rails 5から導入されたクラスで、自分たちが作るすべてのモデルが継承する親クラス。ActiveRecord::Baseを継承している。
+ApplicationRecordとそのサブクラス（作るモデル全て）にActive Recordの機能が提供される
+例えば、全モデルに共通するスコープやバリデーション、コールバックなどはApplicationRecordに定義し、
+個々のモデル固有のものは各モデルのクラスに定義する。
+ApplicationRecordを継承していれば**saveメソッド**や**createメソッド**は、デフォルトでバリデーションが実行される。
+
+
 # attr_accessor
 Rubyの組み込みメソッド。特定のクラスインスタンス変数に対するgetterとsetterを一度に定義。毎回手作業でgetterとsetterを書く手間を省くことができる
 
