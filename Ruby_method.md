@@ -17,9 +17,9 @@
       ```ruby
     irb(main):001:0> 3.1.floor
 　　　　=> 3
-　　irb(main):002:0> 3.9.floor
+　　　irb(main):002:0> 3.9.floor
 　　　　=> 3
-       ```
+      ```
        
 [evenメソッド](https://docs.ruby-lang.org/ja/latest/method/Integer/i/even=3f.html)
 
