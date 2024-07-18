@@ -68,6 +68,7 @@ validates :price, numericality: true #値が数値であることを要求
 validates :quantity, numericality: { only_integer: true }  #数値が整数であることを要求
 validates :age, numericality: { greater_than_or_equal_to: 13, less_than_or_equal_to: 120, message: "is invalid"} #数値が特定の範囲に含まれていることを要求
 validates :investment, numericality: { greater_than: 0 } #数値が特定の値より大きい（もしくは小さい）ことを要求
+validates :prefecture, numericality: { other_than: 0, message: "can't be blank" }  # 都道府県のプルダウンを選択。０：ーー　を選択するとエラーになる
 ```
 
 
