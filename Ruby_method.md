@@ -44,3 +44,27 @@
        ```
        
 [scanメソッド](https://docs.ruby-lang.org/ja/latest/method/String/i/scan.html)
+
+# sliceメソッド 
+配列や文字列から指定した要素を取り出すことができる
+
+      ```ruby
+      # 配列を作成します
+array = [0,1,2,3,4,5,6]
+
+# 配列から引数で指定した要素を取得します
+ele1 = array.slice(1)
+puts ele1
+#=> 1
+
+# 配列番号-4から4つ分の要素をsliceします
+ele2 = array.slice(-4,4)
+puts ele2
+#=> 3, 4, 5, 6
+
+# 配列はもとのままです
+puts array 
+#=> [0,1,2,3,4,5,6]
+       ```
+       
+[sliceメソッド](https://docs.ruby-lang.org/ja/latest/method/String/i/slice=21.html)
