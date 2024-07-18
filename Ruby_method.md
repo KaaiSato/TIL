@@ -48,9 +48,8 @@
 # sliceメソッド 
 配列や文字列から指定した要素を取り出すことができる
 
-      ```ruby
+   ```ruby
 array = [0,1,2,3,4,5,6]
-
 ele1 = array.slice(1)
 puts ele1
 #=> 1
@@ -59,6 +58,6 @@ puts ele2
 #=> 3, 4, 5, 6
 puts array 
 #=> [0,1,2,3,4,5,6]
-       ```
+ ```
        
 [sliceメソッド](https://docs.ruby-lang.org/ja/latest/method/String/i/slice=21.html)
