@@ -70,3 +70,17 @@ puts array
  ```
        
 [sliceメソッド](https://docs.ruby-lang.org/ja/latest/method/String/i/slice=21.html)
+
+
+# whileメソッド 
+指定された条件が真（true）である間、繰り返し処理（ループ）を行う
+
+   ```ruby
+i = 0
+while i < 5
+  puts i
+  i += 1
+end
+ ```
+       
+[whileメソッド](https://docs.ruby-lang.org/en/3.0/syntax/control_expressions_rdoc.html#label-while+Loop)
