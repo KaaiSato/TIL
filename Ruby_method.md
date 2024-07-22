@@ -84,3 +84,12 @@ end
  ```
        
 [whileメソッド](https://docs.ruby-lang.org/en/3.0/syntax/control_expressions_rdoc.html#label-while+Loop)
+
+
+# 範囲演算子（..）
+   ```ruby
+# 1～6までの範囲を指定して、繰り返し表示
+(1..6).each do |num|
+  puts num
+end
+ ```
