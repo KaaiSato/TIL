@@ -1,5 +1,6 @@
 # MySQLのエラーが出た場合
-以下を追記して、rspecコマンドでテストを実行してみる
+以下を追記して、rspecコマンドでテストを実行する。
+
 config/environments/test.rb
 ```ruby
 Rails.application.configure do
