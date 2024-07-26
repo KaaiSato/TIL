@@ -1,4 +1,4 @@
-#javascriptファイルを読み込む
+#　javascriptファイルを読み込む
 ・memo.jsを読み込みたい場合、Rails7dではimportMapを利用する
 
 config/import.rb
