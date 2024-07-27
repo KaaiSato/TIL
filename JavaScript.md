@@ -1,3 +1,13 @@
+# gem 'gon'
+
+Ruby on Railsのgemで、RailsのViewでJavaScriptに簡単に変数を渡すことができる。
+Controller内で設定した変数をJavaScriptからも読み取ることができる。
+gon gemはRailsとJavaScriptの間でデータを簡単かつ効率的に共有することが可能になり、特にAjaxなどを使わない状況で非常に役立つ。
+
+
+
+
+
 # javascriptファイルを読み込む
 
 ・memo.jsを読み込みたい場合、Rails7dではimportMapを利用する
