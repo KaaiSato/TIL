@@ -99,6 +99,44 @@ end
 [whileメソッド](https://docs.ruby-lang.org/en/3.0/syntax/control_expressions_rdoc.html#label-while+Loop)
 
 
+# バイナリーサーチ
+ソート済みのリストや配列に入ったデータ（同一の値はないものとする）に対する検索を行うときに用いられる手法。
+まず、中央の値を確認し、検索したい値との大小関係を用いて、検索したい値が中央の値の右にあるか、左にあるかを判断します。
+それを繰り返し、片側には存在しないことを確かめながら検索していく。
+
+ex)
+```ruby
+def binary_search(array ,target_num ,number_of_elements)
+  left_index = 0
+  right_index = number_of_elements - 1
+  
+  while left_index <= right_index do
+    center_index = (left_index + right_index) / 2 
+    if array[center_index] == target_num
+    return center_index
+    elsif  array[center_index] < target_num
+      left_index = center_index + 1
+    else 
+      right_index = center_index - 1
+    end
+  end
+  return -1
+end
+
+array=[1,3,5,6,9,10,13,20,26,31]
+puts "検索したい数字を入力して下さい"
+target = gets.to_i
+number_of_elements = array.length
+result = binary_search(array ,target ,number_of_elements)
+
+if result == -1
+  puts "#{target}は配列内に存在しません"
+else 
+  puts "#{target}は配列の#{result}番目に存在します"
+end
+```
+
+
 # 範囲演算子（..）
    ```ruby
 # 1～6までの範囲を指定して、繰り返し表示
