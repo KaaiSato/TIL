@@ -4,4 +4,7 @@
 - バケットを作成する  
 -- aws s3 mb s3://バケット名  
 - バケットが作成できたか確認する  
--- aws s3 ls  
+-- aws s3 ls
+- 所有者を確認する
+  -- aws s3api get-bucket-ownership-controls --bucket バケット名
+
