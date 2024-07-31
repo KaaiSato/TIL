@@ -1,10 +1,49 @@
 # S3で画像を保存する  
  IaC(Infrastructure as Code) サーバーなどのインフラ環境ををCLIを用いて管理すること  
 ## AWS CloudShellを用いてバケットを作成し、セキュリティ対策をする(ex,バケット名：furima40467)  
-- バケットを作成する  
--- aws s3 mb s3://バケット名  
+- バケットを作成する
+  $ aws s3 mb s3://furima40467
 - バケットが作成できたか確認する  
--- aws s3 ls
+  $ aws s3 ls
 - 所有者を確認する
-  -- aws s3api get-bucket-ownership-controls --bucket バケット名
+  $ aws s3api get-bucket-ownership-controls --bucket furima40467
+- AWSにアップロードするときに暗号化する（サーバーサイド暗号化）
+  $ aws s3api get-bucket-encryption --bucket furima40467
+- 外部からのアクセスは全てブロックする
+  $ aws s3api get-public-access-block --bucket furima40467
+- アクセスを許可する（ファイルをアップロードできるようにする）
+  $ aws s3api put-public-access-block --bucket furima40467 --public-access-block-configuration '
+{
+    "BlockPublicAcls": true,
+    "IgnorePublicAcls": true,
+    "BlockPublicPolicy": false,
+    "RestrictPublicBuckets": false
+
+}'  
+- IAMユーザー一覧を取得する(arn:aws:iam::xxxxxxxxxxx:user/ユーザー名をコピーする)
+  $ aws iam list-users
+- ホームディレクトリ/s3/polisy.jsonに以下を記載し、それをコピペしてコマンドに打ち込み、バケットポリシーを設定する
+  $ aws s3api put-bucket-policy --bucket furima40467 --policy "$(cat << EOF
+{
+   "Version": "2012-10-17",
+   "Id": "Policy1544152951996",
+   "Statement": [
+       {
+           "Sid": "Stmt1544152948221",
+           "Effect": "Allow",
+           "Principal": {
+               "AWS": "arn:aws:iam::905418298931:user/Satoka_tech_camp"
+           },
+           "Action": "s3:*",
+           "Resource": "arn:aws:s3:::furima40467"
+       }
+   ]
+}
+EOF
+
+)"  
+
+- バケットポリシーを取得して設定を確認する
+  $ aws s3api get-bucket-policy --bucket furima40467
+
 
