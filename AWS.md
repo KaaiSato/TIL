@@ -67,9 +67,8 @@ amazon:
   secret_access_key:  <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
 ```
 
-# ~省略~
-```
-- ローカル環境  
+- ローカル環境
+
 config/envrionments/develpoment.rb
 ```ruby
 config.active_storage.service = :amazon
