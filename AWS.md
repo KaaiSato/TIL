@@ -47,3 +47,9 @@ EOF
   $ aws s3api get-bucket-policy --bucket furima40467
 
 
+## git-secrets
+AWSが公開しているツール。commitするコードにパスワードが含まれていると、警告が出て処理が行われないようにする。
+
+
+
+
