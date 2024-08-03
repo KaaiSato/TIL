@@ -46,6 +46,42 @@ EOF
 - バケットポリシーを取得して設定を確認する
   $ aws s3api get-bucket-policy --bucket furima40467
 
+## 画像の保存先の指定
+- まずはｚｓｈに環境変数を設定する
+
+- config/storage.yml
+```ruby
+test:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage") %>
+
+local:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
+
+amazon:
+  service: S3
+  region: ap-northeast-1
+  bucket:  （自身のバケット名が記載されている状態です）
+  access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+  secret_access_key:  <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+```
+
+# ~省略~
+```
+- ローカル環境  
+config/envrionments/develpoment.rb
+```ruby
+config.active_storage.service = :amazon
+```
+
+- 本番環境  
+config/envrionments/develpoment.rb
+```ruby
+config.active_storage.service = :amazon
+```
+
+
 
 ## git-secrets
 AWSが公開しているツール。commitするコードにパスワードが含まれていると、警告が出て処理が行われないようにする。
