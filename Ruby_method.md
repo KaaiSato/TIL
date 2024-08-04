@@ -71,8 +71,8 @@ irb(main):002:0> name.downcase
 # randメソッド
 
 ０から指定した数未満の数値をランダムに生成する
-
-　```ruby
+　　
+　　　　　　　　　```ruby
  num = rand(100)
 puts num
 => 32  # 0~99の範囲でランダムな数字が生成された
@@ -80,7 +80,7 @@ puts num
 num = rand(100)
 puts num
 => 74  # 0~99の範囲でランダムな数字が生成された
-```
+　　　　　　　　```
 
 
 
