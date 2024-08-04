@@ -68,6 +68,21 @@ irb(main):002:0> name.downcase
 [indexメソッド](https://docs.ruby-lang.org/ja/latest/method/String/i/index.html)
 
 
+# randメソッド
+
+０から指定した数未満の数値をランダムに生成する
+
+　```ruby
+ num = rand(100)
+puts num
+=> 32  # 0~99の範囲でランダムな数字が生成された
+
+num = rand(100)
+puts num
+=> 74  # 0~99の範囲でランダムな数字が生成され
+ ```
+
+
 # scanメソッド 
 
 対象の要素から引数で指定した文字列を数え、配列として返す
