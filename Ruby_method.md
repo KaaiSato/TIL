@@ -97,6 +97,18 @@ irb(main):002:0> name.downcase
        
 [scanメソッド](https://docs.ruby-lang.org/ja/latest/method/String/i/scan.html)
 
+
+# shuffleメソッド
+配列の要素をランダムにシャッフルし、その結果を配列として返す
+  ```ruby
+# shuffleメソッドで配列をシャッフルし、変数animalsに代入
+animals = ["cat", "dog", "rabbit"].shuffle
+
+puts animals
+# => ["rabbit", "cat", "dog"]
+  ```
+[shuffleメソッド](https://docs.ruby-lang.org/ja/latest/method/Array/i/shuffle.html)
+
 # sliceメソッド 
 配列や文字列から指定した要素を取り出すことができる
 
