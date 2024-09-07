@@ -4,78 +4,68 @@
 
 # 実装中
 reservationのnew.html.erb
-ビューの修正とエラー解消
+trainer_idを渡す
 
-エラーの説明
-
-NoMethodError in Reservations#new というエラーは、特定のメソッドが呼び出されようとしたオブジェクトに存在しないことを示しています。この場合、nilオブジェクトに対してerrorsメソッドを呼び出そうとしています。
+エURLがhttp://localhost:3000/reservations/new?trainer_id=8のようになっているのは、リンク生成時にtrainer_idがクエリパラメータとして渡されているためです。これは意図した動作ですが、フォームでその値を受け取って正しく処理するための追加の手順が必要です。
 
 
-エラーメッセージの該当部分:
+1. newアクションでのtrainer_idの受け取り
 
-
-undefined method `errors' for nil:NilClass
-このエラーは、/app/views/trainers/shared/_error_messages.html.erb ファイルの1行目で発生しています。
-
-
-エラーの原因
-
-おそらく、new.html.erb から部分テンプレート _error_messages.html.erb をレンダリングする際に model が nil になってしまっています。これは、_error_messages.html.erb テンプレートに渡される model が正しく設定されていないためです。
-
-
-解決方法
-
-
-new.html.erb の修正:
-new.html.erb ファイルで部分テンプレート _error_messages.html.erb を呼び出す際に、正しいモデルオブジェクトを渡すようにします。
-
-
-
-_error_messages.html.erb の修正:
-確実に model が渡されているかを確認します。
-
-
-
-
-手順
-
-手順1: new.html.erb の確認
-
-new.html.erb ファイルで _error_messages.html.erb 部分テンプレートをレンダリングする行を確認してください。例えば：
-
-
-<%= render "trainers/shared/error_messages", model: @reservation %>
-
-正しいモデルオブジェクト @reservation が渡されていることを確認します。
-
-
-手順2: ReservationsController の確認
-
-ReservationsController の new アクションで @reservation が正しく設定されているか確認してください。例えば：
+まず、newアクションでparams[:trainer_id]を受け取り、それをフォームに渡す必要があります。
 
 
 def new
-  @reservation = Reservation.new
+  @reservation_address = ReservationAddress.new(trainer_id: params[:trainer_id])
 end
 
-手順3: _error_messages.html.erb の修正
+2. フォームでの隠しフィールドの追加
 
-万が一 model が nil の場合に備えて、テンプレート内でチェックを追加する方法もありますが、これだけでは根本的な解決にはなりません。以下は追加の保護措置です。
+フォームに隠しフィールドを追加し、trainer_idをフォームデータとして送信できるようにします。
 
 
-<% if model && model.errors.any? %>
-  <div class="error-alert">
-    <ul>
-      <% model.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
+フォームの修正 (reservations/new.html.erb)
+
+<%= form_with model: @reservation_address, url: reservations_path do |f| %>
+  <!-- フォームの他のフィールド -->
+  <%= f.hidden_field :trainer_id, value: @reservation_address.trainer_id %>
+
+  <div class="actions">
+    <%= f.submit "予約する" %>
   </div>
 <% end %>
 
-しかし、このようなチェックを追加する前に、 new.html.erb ファイルとコントローラーの設定が正しいかをしっかり確認しましょう。
+3. ReservationAddressモデルのコンストラクタの修正
+
+もし必要であれば、ReservationAddressモデルにtrainer_idをコンストラクタで正しく受け取れるように設定します。
 
 
-最後に
+class ReservationAddress
+  include ActiveModel::Model
+  attr_accessor :trainer_id, :user_id, :last_name, :first_name, :last_name_reading, :first_name_reading, :date, :time_id, :request, :prefecture_id, :city, :addresses, :phone_number
 
-上記の手順に従って、エラー状況を確認し修正することで Reservations#new でのエラーが解消することを期待しています。引き続き頑張ってください！何か不明点があれば再度質問してください。応援しています！
+  validates :trainer_id, presence: true  # 必要ならバリデーションを追加
+  # 既存のバリデーションとメソッド
+
+  def save
+    reservation = Reservation.create(trainer_id: trainer_id, user_id: user_id, last_name: last_name, first_name: first_name, last_name_reading: last_name_reading, first_name_reading: first_name_reading, date: date, time_id: time_id, request: request)
+    Address.create(prefecture_id: prefecture_id, city: city, addresses: addresses, phone_number: phone_number, reservation_id: reservation.id)
+  end
+end
+
+全体の流れ
+
+
+trainers/show.html.erbから正しくリンクを生成し、trainer_idをクエリパラメータとして渡す。
+
+newアクションでtrainer_idを受け取り、ReservationAddressモデルのインスタンスに含める。
+
+フォームに隠しフィールドを追加し、trainer_idを含める。
+
+createアクションでtrainer_idを含んだパラメータを受け取り、処理する。
+
+
+これらの手順を踏むことで、trainer_idが正しくフォームに渡され、保存されることを確認できます。
+
+
+引き続き頑張ってください！応援しています。問題があればまた質問してくださいね。
+
